@@ -1,6 +1,9 @@
 <script>
+import PvButton from "../../main.js";
+
 export default {
   name: "data-manager",
+  components: {PvButton},
   inheritAttrs:"false",
   props:{
     items:{type:Array, required: true},
@@ -62,6 +65,19 @@ export default {
 </script>
 
 <template>
+  <pv-toast/>
+  <pv-confirm-dialog/>
+  <h3>Manage {{title.plural}}</h3>
+
+  <!--Toolbar section -->
+<pv-toolbar class="mb-4">
+  <template #start>
+    <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
+<pv-button :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" label="Delete" severity="" @click="confirmDeleteSelected"/>
+
+
+  </template>
+</pv-toolbar>
 
 </template>
 
